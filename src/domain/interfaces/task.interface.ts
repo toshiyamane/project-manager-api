@@ -1,4 +1,4 @@
-import { IProject } from '.project.interface';
+import { IProject } from './project.interface';
 import { IUser } from './user.interface';
 export class ITask {
 id: number;
