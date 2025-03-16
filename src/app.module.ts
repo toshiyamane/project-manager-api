@@ -13,12 +13,18 @@ import { UpdateTaskService } from './domain/use-cases/tasks/update-task.service'
 import { CreateUserService } from './domain/use-cases/users/create-user.service';
 import { GetUserByIdService } from './domain/use-cases/users/get-user-by-id.service';
 import { DatabaseModule } from './infrastructure/database/database.module';
+import { AuthGuardService } from './gateways/guards/auth-guard.service';
+import { APP_GUARD } from '@nestjs/core';
 
 @Module({
   imports: [DomainModule, InfrastructureModule, GatewaysModule, DatabaseModule],
   controllers: [AppController],
   providers: [
     AppService,
+    { 
+      provide: APP_GUARD, 
+      useClass: AuthGuardService, 
+    },
     GetProjectByIdService,
     CreateProjectService,
     GetAllTasksService,
